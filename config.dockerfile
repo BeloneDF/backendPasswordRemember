@@ -22,6 +22,12 @@ RUN npm install
 # Copiar o restante da aplicação
 COPY . .
 
+# Copiar o arquivo .env
+COPY .env .env
+
+# Carregar variáveis de ambiente
+RUN node -e 'require("dotenv").config();'
+
 CMD ["sh", "-c", "bun install"]
 # Comando de inicialização
 CMD ["sh", "-c", "bun generate-prisma && bun dev"]
